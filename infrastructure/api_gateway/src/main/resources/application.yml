@@ -1,0 +1,23 @@
+server:
+  port: 8008
+
+spring:
+  application:
+    name: service-gateway
+
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+      - id: service-video
+        uri: lb://service-video
+        predicates:
+        - Path=/serviceVideo/**
+
+
